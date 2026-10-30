@@ -4,12 +4,13 @@ import express from 'express';
 import cors from 'cors';
 import { AppDataSource } from './config/data-source';
 import { userRoutes } from './routes/userRoutes';
+import { taskRoutes } from './routes/taskRoutes';
 import * as dotenv from 'dotenv';
 
 dotenv.config();
 
 const app = express();
-const PORT = process.env.PORT || 3000;
+const PORT = process.env.PORT || 3001;
 
 // Middleware
 app.use(cors());
@@ -26,6 +27,7 @@ app.get('/health', (req, res) => {
 
 // Routes
 app.use('/api/users', userRoutes);
+app.use('/api', taskRoutes);
 
 // 404 Handler
 app.use((req, res) => {
